@@ -1,0 +1,46 @@
+integrator           = md
+gen_vel              = yes
+gen_seed             = -1
+gen_temp             = 303
+nsteps               = 15000000
+dt                   = 0.002
+
+comm-mode            = linear
+nstcomm              = 1
+nstcalcenergy        = 1
+comm-grps            = solvent upper lower
+
+nstlist              = 10
+ns-type              = grid
+pbc                  = xyz
+rlist                = 1.2
+coulombtype          = pme
+rcoulomb             = 1.2
+vdwtype              = cut-off
+rvdw                 = 1.2
+dispcorr             = enerpres
+
+energygrps           = lipids solvent
+table-extension      = 1
+fourierspacing       = 0.12
+
+nstxtcout            = 0
+nstxout              = 100000
+nstvout              = 0
+nstfout              = 0
+nstlog               = 100000
+nstenergy            = 1000
+
+tcoupl               = nose-hoover
+tc-grps              = lipids solvent
+tau-t                = 0.5 0.5
+ref-t                = 303 303
+
+pcoupl               = parrinello-rahman
+pcoupltype           = semiisotropic
+ref-p                = 1.0 1.0
+tau-p                = 10.0 10.0
+compressibility      = 4.5e-5 4.5e-5
+
+constraints          = h-bonds
+constraint-algorithm = lincs
